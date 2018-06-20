@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getResults } from "./services/persistanceService";
+import './App.css'
 
 class App extends Component {
 
@@ -10,12 +11,28 @@ class App extends Component {
 
   componentDidMount() {
     const list = getResults()
-    this.setState({list})
+    const nameWithSmallestDiff = this.getSmallestDifferenceTeamName(list)
+    this.setState({
+      list,
+      nameWithSmallestDiff
+    })
+  }
+
+  getSmallestDifferenceTeamName(list) {
+    return list.reduce( (acc, item) => {
+      const diff = Math.abs(item.A - item.F)
+      return diff < acc.diff ? {diff, name: item.name} : acc
+    }, {diff: Infinity, name: ''}).name
+  }
+
+  getRowClass(name) {
+    return name === this.state.nameWithSmallestDiff ? 'App-row-with-smallest-diff' : ''
   }
 
   renderTeams() {
+    console.log(this.state.nameWithSmallestDiff)
     return this.state.list.map((result, idx) => (
-      <tr key={idx}>
+      <tr key={idx} className={this.getRowClass(result.name)}>
         <td>{result.name}</td>
         <td>{result.F}</td>
         <td>{result.A}</td>
