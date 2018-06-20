@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getResults } from "./services/persistanceService";
 import './App.css'
 import DifferenceChart from "./components/DifferenceChart";
+import ResultsChart from "./components/ResultsChart";
 
 class App extends Component {
 
@@ -49,6 +50,15 @@ class App extends Component {
       }
     })
     return diffs
+  }
+
+  prepareMainResults() {
+    return this.state.list.map(item => {
+      return {
+        ...item,
+        diff: Math.abs(item.A - item.F)
+      }
+    })
   }
 
   render() {
@@ -127,7 +137,7 @@ class App extends Component {
           <div className="column">
             <DifferenceChart diffs={this.prepareDiffs()}/>
             <br />
-            TODO: add chart with points results
+            <ResultsChart results={this.prepareMainResults()}/>
           </div>
         </div>
       </section>
