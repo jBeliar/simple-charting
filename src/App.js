@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getResults } from "./services/persistanceService";
 import './App.css'
+import DifferenceChart from "./components/DifferenceChart";
 
 class App extends Component {
 
@@ -30,7 +31,6 @@ class App extends Component {
   }
 
   renderTeams() {
-    console.log(this.state.nameWithSmallestDiff)
     return this.state.list.map((result, idx) => (
       <tr key={idx} className={this.getRowClass(result.name)}>
         <td>{result.name}</td>
@@ -39,6 +39,16 @@ class App extends Component {
         <td>{result.Pts}</td>
       </tr>
     ));
+  }
+
+  prepareDiffs() {
+    const diffs = this.state.list.map(item => {
+      return {
+        name: item.name,
+        value: Math.abs(item.A - item.F)
+      }
+    })
+    return diffs
   }
 
   render() {
@@ -115,7 +125,8 @@ class App extends Component {
             </table>
           </div>
           <div className="column">
-            TODO: add chart with for / against difference<br />
+            <DifferenceChart diffs={this.prepareDiffs()}/>
+            <br />
             TODO: add chart with points results
           </div>
         </div>
