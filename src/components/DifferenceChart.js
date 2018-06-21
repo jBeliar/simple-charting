@@ -19,7 +19,7 @@ class DifferenceChart extends Component {
           <YAxis domain={["auto", "auto"]} orientation="right"/>
           <CartesianGrid strokeDasharray="1 1"/>
           <Tooltip/>
-          <Line type="monotone" dataKey="value" stroke="blue" animationDuration={200} />
+          <Line type="monotone" dataKey="Difference" stroke="blue" animationDuration={200} />
         </LineChart>
       </ResponsiveContainer>
     );

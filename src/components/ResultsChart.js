@@ -11,20 +11,6 @@ import {
 
 class ResultsChart extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state.results = []
-  // }
-
-  // prepareResults() {
-
-  // }
-
-  // componentDidMount() {
-  //   const results = this.prepareResults()
-  //   this.setState({results})
-  // }
-
   render() {
     return (
       <ResponsiveContainer height={300}>
@@ -33,10 +19,10 @@ class ResultsChart extends Component {
           <YAxis domain={["auto", "auto"]} orientation="right"/>
           <CartesianGrid strokeDasharray="1 1"/>
           <Tooltip/>
-          <Line type="monotone" dataKey="F" stroke="blue" animationDuration={200} />
-          <Line type="monotone" dataKey="A" stroke="red" animationDuration={200} />
-          <Line type="monotone" dataKey="diff" stroke="orange" animationDuration={200} />
-          <Line type="monotone" dataKey="Pts" stroke="green" animationDuration={200} />
+          <Line type="monotone" dataKey="Scored" stroke="blue" animationDuration={200} />
+          <Line type="monotone" dataKey="Lost" stroke="red" animationDuration={200} />
+          <Line type="monotone" dataKey="Difference" stroke="orange" animationDuration={200} />
+          <Line type="monotone" dataKey="Points" stroke="green" animationDuration={200} />
         </LineChart>
       </ResponsiveContainer>
     );

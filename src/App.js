@@ -46,7 +46,7 @@ class App extends Component {
     const diffs = this.state.list.map(item => {
       return {
         name: item.name,
-        value: Math.abs(item.A - item.F)
+        Difference: Math.abs(item.A - item.F)
       }
     })
     return diffs
@@ -55,8 +55,11 @@ class App extends Component {
   prepareMainResults() {
     return this.state.list.map(item => {
       return {
-        ...item,
-        diff: Math.abs(item.A - item.F)
+        name: item.name,
+        Scored: item.F,
+        Lost: item.A,
+        Points: item.Pts,
+        Difference: Math.abs(item.A - item.F)
       }
     })
   }
